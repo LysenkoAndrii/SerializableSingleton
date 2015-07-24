@@ -13,19 +13,19 @@ import java.io.Serializable;
 public class Main {
     private static File file = new File("singleton.ser");
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Singleton singleton = Singleton.getInstance();
         singleton.printData();
         Main.writeObject(singleton);
         singleton.setData("By the way, Java is awesome");
         singleton.printData();
         Main.readObject();
-        singleton = null; // explicit "losing" of old object
-        singleton = Singleton.getInstance(); //
+        singleton = Singleton.getInstance(); // "losing" of an old object
         singleton.printData();
     }
-    static void writeObject(Serializable ser) throws Exception {
-        try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(file))) {
+    static void writeObject(Serializable ser) {
+        try (ObjectOutputStream stream = new ObjectOutputStream(new
+                FileOutputStream(file))) {
             stream.writeObject(ser);
             System.out.println("Singleton is written");
         } catch (IOException e) {
@@ -34,7 +34,8 @@ public class Main {
     }
 
     static void readObject() {
-        try (ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file))) {
+        try (ObjectInputStream stream = new ObjectInputStream(new
+                FileInputStream(file))) {
             stream.readObject();
             System.out.println("Singleton is read");
         } catch (IOException | ClassNotFoundException e) {
