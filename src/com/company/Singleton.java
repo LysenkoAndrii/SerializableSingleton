@@ -15,10 +15,6 @@ public class Singleton implements Serializable {
 
     public void printData() { System.out.println("Data: " + data); }
 
-    /*
-     * Refreshes data, setting the old data value to a new one
-     * @param   data    new data to store
-     */
     public void setData(String data) {
         this.data = data;
         System.out.println("New data is set");
